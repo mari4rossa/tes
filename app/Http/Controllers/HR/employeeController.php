@@ -106,8 +106,8 @@ class employeeController extends Controller
         $name = $request->name;
         $email = $request->email;
         $position_id = $request->position_id;
-        $department= Position::where('id','=',$position_id)->select('department_id')->first();
-        $department_id=$department->department_id;
+        $department = Position::where('id','=',$position_id)->select('department_id')->first();
+        $department_id = $department->department_id;
         $entry_date = $request->entry_date;
 
         if($nik!='' && $name!='' && $email!='' && $entry_date!=null){
@@ -327,19 +327,24 @@ class employeeController extends Controller
 
         DB::beginTransaction();
         $employee = Employee::find($id);
-        if($employee->active==1){
-            DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-            $employee->delete();
-            if($employee){
-                DB::commit();
-                $status="Berhasil"; $message="Anda berhasil menghapus data karyawan.";
-            } else{
-                DB::rollback();
-                $status="Gagal"; $message="Mohon menghubungi admin, gagal menonaktifkan data jabatan.";
+        if($employee!=null){
+            if($employee->active==1){
+                DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+                $employee->delete();
+                if($employee){
+                    DB::commit();
+                    $status="Berhasil"; $message="Anda berhasil menghapus data karyawan.";
+                } else{
+                    DB::rollback();
+                    $status="Gagal"; $message="Mohon menghubungi admin, gagal menonaktifkan data jabatan.";
+                }
+            } elseif($employee->active==0){
+                $status="Gagal"; $message="Data mantan karyawan tidak boleh dihapus.";
             }
-        } elseif($employee->active==0){
-            $status="Gagal"; $message="Data mantan karyawan tidak boleh dihapus.";
+        } elseif($employee==null){
+            $status="Gagal"; $message="Data telah dihapus.";
         }
+        
         return response()->json(['status'=>$status, 'message'=>$message]);
     }
 }

@@ -135,7 +135,7 @@
                                     <!-- position name -->
                                     <td>Jabatan: </td>
                                     <td class="ps-3">
-                                        <input name="position_name_update" id="position_name_update" required oninput="this.value = this.value.toUpperCase()" class="form-control" type="text" value="">
+                                        <input disabled name="position_name_update" id="position_name_update" oninput="this.value = this.value.toUpperCase()" class="form-control" type="text" value="">
                                     </td>
                                 </tr>
                                 <tr>

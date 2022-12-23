@@ -137,7 +137,7 @@
                                     <!-- trainer code -->
                                     <td>Kode: </td>
                                     <td class="ps-3">
-                                        <input name="trainer_code_update" id="trainer_code_update" required oninput="this.value = this.value.toUpperCase()" class="form-control" type="text" value="">
+                                        <input disabled name="trainer_code_update" id="trainer_code_update" oninput="this.value = this.value.toUpperCase()" class="form-control" type="text" value="">
                                     </td>
                                 </tr>
                                 <tr>

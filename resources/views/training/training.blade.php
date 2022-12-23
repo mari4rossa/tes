@@ -135,7 +135,7 @@
                                     <!-- training name -->
                                     <td>Nama: </td>
                                     <td class="ps-3">
-                                        <input name="training_name_update" id="training_name_update" required oninput="this.value = this.value.toUpperCase()" class="form-control" type="text" value="" minlength="5" maxlength="180">
+                                        <input disabled name="training_name_update" id="training_name_update" oninput="this.value = this.value.toUpperCase()" class="form-control" type="text" value="" minlength="5" maxlength="180">
                                     </td>
                                 </tr>
                                 <tr>

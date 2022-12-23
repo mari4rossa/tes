@@ -87,6 +87,8 @@ class trainingHistoryController extends Controller
         $training_id = $request->training_id;
         $start_date = $request->start_date;
         $end_date = $request->end_date;
+        
+        dd($request->employee_id);
 
         if($employee_id!=''  && $training_id!='' && $start_date!=null){
             //cek karyawan sdh ambil trainingnya apa belum??

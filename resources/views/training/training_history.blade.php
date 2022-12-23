@@ -251,6 +251,12 @@
             $('#insertBtn').click(function (e) {
                 e.preventDefault();
                 $(this).html('Menyimpan..');
+                var employeeId = [];
+                $("input[name='employee_id']").each(function(){
+                    employeeId.push($(this).val());
+                    console.log(employeeId);
+                });
+                
                 $.ajax({
                     data: $('#trainingHistoryInsertForm').serialize(),
                     url: "{{ route('training-history.store') }}",

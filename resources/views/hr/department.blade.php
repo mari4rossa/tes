@@ -128,7 +128,7 @@
                                     <!-- department code -->
                                     <td>Kode Divisi: </td>
                                     <td class="ps-3">
-                                        <input name="department_code_update" id="department_code_update" required oninput="this.value = this.value.toUpperCase()" class="form-control" type="text" value="">
+                                        <input disabled name="department_code_update" id="department_code_update" oninput="this.value = this.value.toUpperCase()" class="form-control" type="text" value="">
                                     </td>
                                 </tr><tr>
                                     <!-- department name -->
