@@ -20,10 +20,15 @@ class ExportMutation implements FromCollection, WithHeadings, WithColumnFormatti
                             ->get();
         // dd($datas);
 
-        foreach($datas as $data){
-            Date::dateTimeToExcel($data->start_date);
-            // Carbon::parse($data->start_date)->format('d-m-Y');
-        }
+        // foreach($datas as $data){
+        //     $date = strtotime($data->start_date->format('d-m-Y'));
+        //     $formatted_date = date('d/m/Y', $date);
+        //     // $data->start_date = Date_Format($date,'d-m-Y');
+        //     $data->start_date = $formatted_date;
+        // }
+        // $sheet->setColumnFormat(array(
+        //     'H' => 'dd-mm-yyyy'
+        // ));
 
         return $datas;
     }
@@ -31,7 +36,7 @@ class ExportMutation implements FromCollection, WithHeadings, WithColumnFormatti
     public function columnFormats(): array
     {
         return [
-            'H' => NumberFormat::FORMAT_DATE_DDMMYYYY
+            'H' => NumberFormat::FORMAT_DATE_DMYMINUS
         ];
     }
     

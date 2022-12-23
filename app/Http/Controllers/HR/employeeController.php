@@ -98,12 +98,9 @@ class employeeController extends Controller
         $status=null;
         $message=null;
 
-        // $validation = $request->validate([
+        // $request->validate([
         //     'email' => 'required|email:rfc,dns'
         // ]);
-        // if(!$validation){
-        //     $message='email kosong';
-        // }
           
         $nik = $request->nik;
         $name = $request->name;

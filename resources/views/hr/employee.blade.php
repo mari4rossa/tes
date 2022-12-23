@@ -343,7 +343,7 @@
                 $.get("{{ url('employee') }}" +'/' + employee_id +'/edit', 
                     function (data) {
                         var date = new Date(data.entry_date);
-                        var entry_date_formatted = date.getFullYear()+"-"+date.getMonth()+"-"+date.getDate();
+                        var entry_date_formatted = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
                         $('#updateModalHeading').html("Edit Data Karyawan");
                         $('#updateBtn').val("edit-employee");
                         $('#updateEmployeeModal').modal('show');
@@ -353,7 +353,7 @@
                         $('#name_update').val(data.name);
                         $('#email_update').val(data.email);
                         $('#position_id_update').val(data.position_id);
-                        $('#entry_date_update').val(entry_date_formatted).change();
+                        $('#entry_date_update').val(entry_date_formatted);
                         $('#out_date_update').val(data.out_date);
                     }
                 )

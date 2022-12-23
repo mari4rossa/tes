@@ -90,18 +90,19 @@
 
         <!-- Insert Training History Modal -->
         <div class="modal fade" id="createTrainingHistoryModal" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title" id="insertModalHeading"></h4>
                         <button type="button" class="btn-close insert" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form id="trainingHistoryInsertForm" name="trainingHistoryInsertForm" class="form-horizontal">
+                        <form id="trainingHistoryInsertForm" name="trainingHistoryInsertForm" class="form-horizontal after-add-more">
                             <table>
                                 <tr>
+                                    <!-- employee id  -->
                                     <td>Karyawan:</td>
-                                    <td class="ps-3">
+                                    <td class="ps-1">
                                         <select required name="employee_id" id="employee_id" class="form-select">
                                             <option value="0" selected disabled></option>
                                             @foreach($employees as $employee)
@@ -109,10 +110,9 @@
                                             @endforeach
                                         </select>
                                     </td>
-                                </tr>
-                                <tr>
-                                    <td>Pelatihan:</td>
-                                    <td class="ps-3">
+                                    <!-- training id  -->
+                                    <td>&emsp;Pelatihan:</td>
+                                    <td class="ps-1">
                                         <select required name="training_id" id="training_id" class="form-select">
                                             <option value="0" selected disabled></option>
                                             @foreach($trainings as $training)
@@ -120,29 +120,68 @@
                                             @endforeach
                                         </select>
                                     </td>
-                                </tr>
-                                <tr>
                                     <!-- start date  -->
-                                    <td>Tanggal mulai: </td>
-                                    <td class="ps-3"><input name="start_date" id="start_date" class="form-control" required type="date" ></td>
-                                </tr>
-                                <tr>
+                                    <td>&emsp;Tanggal mulai: </td>
+                                    <td class="ps-1"><input name="start_date" id="start_date" class="form-control" required type="date" ></td>
                                     <!-- end date  -->
-                                    <td>Tanggal selesai: </td>
-                                    <td class="ps-3"><input name="end_date" id="end_date" class="form-control" type="date" ></td>
+                                    <td>&emsp;Tanggal selesai: </td>
+                                    <td class="ps-1"><input name="end_date" id="end_date" class="form-control" type="date" ></td>
                                 </tr>
                             </table>
-                             <!-- button submit -->
                              <br>
                              <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-primary" id="insertBtn" value="create">Simpan
-                                </button>
-                            </div>
+                            <button class="btn btn-success add-more" type="button">
+                                    <i class="glyphicon glyphicon-plus"></i>Tambah</button>
+                                    &emsp;
+                            <button type="submit" class="btn btn-primary" id="insertBtn" value="create">Simpan</button>
+                        </div>
                         </form>
                     </div>
+                        <!-- button submit -->
                 </div>
             </div>
         </div>
+
+        <!-- copy insert invisible -->
+        <div class="copy invisible">
+            <form id="trainingHistoryInsertForm" name="trainingHistoryInsertForm" class="form-horizontal control-group">
+                <table>
+                    <tr>
+                        <!-- employee id  -->
+                        <td>Karyawan:</td>
+                        <td class="ps-1">
+                            <select required name="employee_id" id="employee_id" class="form-select">
+                                <option value="0" selected disabled></option>
+                                    @foreach($employees as $employee)
+                                        <option value="{{$employee->id}}">{{$employee->nik}} - {{$employee->name}}</option>
+                                    @endforeach
+                            </select>
+                        </td>
+                        <!-- training id  -->
+                        <td>&emsp;Pelatihan:</td>
+                        <td class="ps-1">
+                            <select required name="training_id" id="training_id" class="form-select">
+                                <option value="0" selected disabled></option>
+                                     @foreach($trainings as $training)
+                                        <option value="{{$training->id}}">{{$training->training_name}}</option>
+                                    @endforeach
+                            </select>
+                        </td>
+                        <!-- start date  -->
+                        <td>&emsp;Tanggal mulai: </td>
+                        <td class="ps-1"><input name="start_date" id="start_date" class="form-control" required type="date" ></td>
+                        <!-- end date  -->
+                        <td>&emsp;Tanggal selesai: </td>
+                        <td class="ps-1"><input name="end_date" id="end_date" class="form-control" type="date" ></td>
+                        <td>
+                            <button class="btn btn-danger btn-sm remove" aria-label="Buang" type="button"><i class="glyphicon glyphicon-remove"></i>X</button><br><br>
+                        </td>       
+                    </tr>
+                </table>
+                <br>
+            </form>
+        </div>
+        
 
         <!-- Update Training History Modal -->
         <div class="modal fade" id="updateTrainingHistoryModal" aria-hidden="true">
@@ -276,6 +315,16 @@
             $('.btn-close.update').click(function () {
                 $('#trainingHistoryUpdateForm').trigger("reset");
                 $('#updateTrainingHistoryModal').modal('hide');
+            });
+
+            $(".add-more").click(function(){ 
+                var html = $(".copy").html();
+                $(".after-add-more").before(html);
+            });
+
+            // saat tombol remove dklik control group akan dihapus 
+            $("body").on("click",".remove",function(){ 
+                $(this).parents(".control-group").remove();
             });
 
         });
